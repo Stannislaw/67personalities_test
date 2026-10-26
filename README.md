@@ -12,8 +12,8 @@ A small static web app written in plain HTML, CSS and JavaScript. There is no se
 | --- | --- |
 | `index.html` | Page structure: intro screen, question screen, result screen. |
 | `style.css` | Look and feel: gradient background, cards, progress bar, buttons. |
-| `db.js` | The database: `axes`, `personalities`, `questions` and `answers` tables. |
-| `script.js` | Quiz logic. Reads everything from `db.js`. |
+| `db/` | The database, split into one file per table (see below). |
+| `script.js` | Quiz logic. Reads everything from `db/`. |
 | `README.md` | This file. |
 
 ## How to run it
@@ -41,24 +41,29 @@ Just open `index.html` in any modern browser. Double-clicking the file is enough
 | SM | Sun Worshipper (S) | Moon Cultist (M) |
 | BH | Pineapple Believer (B) | Pineapple Heretic (H) |
 
-The axes are in `DB.axes`. The order matters: a personality code is built by taking one letter from each axis in that order. With 6 axes and 2 poles each, there are 2^6 = 64 possible codes, and the current version has one personality for every code.
+The axes are in `db/axes.js`. The order matters: a personality code is built by taking one letter from each axis in that order. With 6 axes and 2 poles each, there are 2^6 = 64 possible codes, and the current version has one personality for every code.
 
 ## Content
 
-- **Axes:** the `axes` table in `db.js`. Each row has an `id` and two poles, `a` and `b`, each with a `code` and a `name`.
-- **Personalities:** the `personalities` table in `db.js`. Each row has an `id` (its 6-letter code, one letter per axis in axis order), a `name`, an `emoji` and a `description`. The current version has 64 personalities.
-- **Questions:** the `questions` table in `db.js`. The current pool has 50 questions, each with an `id`, an `emoji`, `text`, and the `axis` it measures.
-- **Answers:** the `answers` table in `db.js`. Each row links one answer's text to one question (`questionId`) and to one pole (`pole`, a letter from that question's axis). Each question has four answers, two per pole.
+- **Axes:** `db/axes.js`. Each row has an `id` and two poles, `a` and `b`, each with a `code` and a `name`.
+- **Personalities:** one file per personality in `db/personalities/`, named after its code (e.g. `db/personalities/LFPCSB.js`). Each has an `id` (its 6-letter code, one letter per axis in axis order), a `name`, an `emoji`, a `description` and a `profile`. The current version has 67 personalities.
+- **Questions:** `db/questions.js`. The current pool has 50 random questions plus one fixed opener, each with an `id`, an `emoji`, `text`, and the `axis` it measures.
+- **Answers:** `db/answers.js`. Each row links one answer's text to one question (`questionId`) and to one pole (`pole`, a letter from that question's axis). Each question has four answers, two per pole.
+- `db/index.js` assembles all of these into a single global `DB` object that `script.js` uses.
 - The number of questions per axis is set by `QUESTIONS_PER_AXIS` in `script.js` (currently 5).
 
 ## Adding content
 
+Every personality, question and answer is a separate entry in its file. The files are plain JavaScript, so they open fine with a double click.
+
 To add a personality:
-1. Add a row to `DB.personalities` in `db.js`: `{ id: "XXXXXX", name: "...", emoji: "...", description: "..." }`. The `id` must be the 6-letter code, and it must be unique.
+1. Create `db/personalities/XXXXXX.js` (the 6-letter code, unique). Copy an existing file as a template, and make sure the file's `window.DB_PERSONALITIES[...]` key matches the code.
+2. Add the code to the list in `db/personalities/index.js`, which sets the display order.
+3. Add a `<script>` tag for the new file in `index.html`, before `db/personalities/index.js`.
 
 To add a question:
-1. Add a row to `DB.questions`: `{ id: 51, axis: "LW", emoji: "...", text: "..." }`. The `id` must be unique.
-2. Add four rows to `DB.answers`: `{ questionId: 51, pole: "L", text: "..." }`. Use poles from the question's axis.
+1. Add a row to `db/questions.js`: `{ id: 52, axis: "LW", emoji: "...", text: "..." }`. The `id` must be unique.
+2. Add four rows to `db/answers.js`: `{ questionId: 52, pole: "L", text: "..." }`. Use poles from the question's axis.
 
 `script.js` joins these tables automatically, so you never need to edit it when adding content.
 
