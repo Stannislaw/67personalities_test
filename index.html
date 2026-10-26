@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>67 Personalities</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>67 Personalities</h1>
+      <p class="subtitle">A joking distorting mirror of the 16 Personalities test. Answer honestly. Or don't. We don't judge. (We do.)</p>
+    </header>
+
+    <section id="intro" class="card">
+      <p>25 random questions from a pool of 50. Pick the answer that feels most like you. No wrong answers, only brainrot.</p>
+      <button id="start-btn" class="btn">Start the test</button>
+    </section>
+
+    <section id="quiz" class="card hidden">
+      <div class="progress"><div id="progress-bar"></div></div>
+      <p id="progress-text"></p>
+      <h2 id="question-text"></h2>
+      <div id="options"></div>
+    </section>
+
+    <section id="result" class="card hidden">
+      <p class="result-label">Your personality is</p>
+      <h2 id="result-name"></h2>
+      <p id="result-emoji" class="result-emoji"></p>
+      <p id="result-desc"></p>
+      <h3>Runner-ups</h3>
+      <ol id="result-runners"></ol>
+      <button id="restart-btn" class="btn">Take it again</button>
+    </section>
+  </div>
+
+  <script src="db.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
