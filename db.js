@@ -18,6 +18,82 @@ const DB = {
   ],
 
   personalities: [
+    // Unattainable for average humans. These types cannot be assessed by the quiz.
+    {
+      id: "XXPOPE", name: "Pope", emoji: "⛪",
+      description: "Only the pope can be him. If you are the pope, please contact us.",
+      profile: {
+        overview: [
+          "The Pope is a unique and unattainable personality type. Only one person at a time can hold this position, and the role comes with a lineage, a conclave and a very specific set of responsibilities that cannot be self-assigned.",
+          "If you believe you are the Pope, please contact us. We would be honoured to hear from you, though we would also need some form of verification.",
+          "For everyone else: admiring the Pope from a distance is as close as the average human will ever get to this personality."
+        ],
+        strengths: [
+          "Global recognition. The Pope is known across the world, often without ever having to introduce themselves.",
+          "Enormous responsibility. The Pope is trusted to guide millions of people and to speak on matters of faith and conscience.",
+          "Unshakeable institutional continuity. The role outlasts any single occupant."
+        ],
+        weaknesses: [
+          "Very limited personal anonymity. Almost every public move is watched, interpreted and debated.",
+          "Cannot be achieved through effort alone. The position is granted through a process that no quiz can replicate.",
+          "Small decisions can carry very large consequences, which makes spontaneity difficult."
+        ],
+        similarTo: "The Pope has no close relatives in this assessment. Their nearest spiritual neighbour is the Based Hermit, though the Pope is far more publicly visible.",
+        inRelationships: "The Pope is committed to a single institution and a community of millions, which leaves little room for an ordinary private relationship.",
+        atWork: "The Pope's workplace is the Vatican. Meetings, travel and public addresses fill the schedule, and the role cannot be delegated.",
+        growth: "For the average human, growth as a Pope is not an available path. Consider instead the lessons of humility, service and reflection that the role is said to represent."
+      }
+    },
+    {
+      id: "XXGHST", name: "Agnostical Ghost", emoji: "👻",
+      description: "He himself is not convinced that he exists.",
+      profile: {
+        overview: [
+          "The Agnostical Ghost is a unique and unattainable personality type. Their existence is, by their own admission, uncertain. They drift between rooms, they are not sure whether anyone can see them, and they have stopped trying to settle the question.",
+          "Most attempts to assess this type fail at the first question, because the Agnostical Ghost cannot confirm that they are answering. Results may therefore be unreliable, and so may this profile.",
+          "For the average human: you can think about the Agnostical Ghost, but you cannot be one. Unless, of course, you are not sure you are one either."
+        ],
+        strengths: [
+          "Deep humility about the nature of reality. The Agnostical Ghost holds their beliefs loosely and is open to being wrong.",
+          "Remarkably hard to offend. A being that doubts its own existence is rarely shaken by criticism.",
+          "Excellent at passing through closed doors, metaphorically and otherwise."
+        ],
+        weaknesses: [
+          "Difficult to pin down. Plans, appointments and commitments tend to dissolve when the Ghost questions whether they will happen.",
+          "Frequently asks 'Is this real?' at moments when nobody else is interested in the answer.",
+          "Can be overlooked by the living, which the Ghost is not entirely sure is a problem."
+        ],
+        similarTo: "The Agnostical Ghost shares a sense of drifting with the Rizz Ghost, though the Agnostical Ghost is far less sure of their own presence.",
+        inRelationships: "The Agnostical Ghost is affectionate but unsure whether their partner is really there. Reassurance is welcome, although the Ghost will probably ask for proof.",
+        atWork: "The Agnostical Ghost works best in roles that do not require confirmation of existence, such as philosophy, haunting-adjacent consulting and asking questions nobody can answer.",
+        growth: "For the average human, this path is not realistically available. The Agnostical Ghost's lesson, that certainty is optional, can still be borrowed by anyone."
+      }
+    },
+    {
+      id: "XXCONS", name: "The Spirit of Constitution", emoji: "📜",
+      description: "Called many times. Never showed up.",
+      profile: {
+        overview: [
+          "The Spirit of Constitution is a unique and unattainable personality type. It has been summoned repeatedly, in courtrooms, classrooms and late-night debates, and it has never once appeared. Its absence is widely noted and only occasionally forgiven.",
+          "Those who claim to channel the Spirit describe a sense of principle, order and fidelity to foundational rules. Nobody has been able to verify this, because the Spirit has not attended any of the sessions.",
+          "For the average human: you may invoke the Spirit of Constitution, read its founding texts and argue about what it would have wanted. You will not, however, become it."
+        ],
+        strengths: [
+          "Unmatched reputation for principle. Whatever the Spirit would say, people agree it would be important.",
+          "Enormous stabilising influence, at least in theory. Its presence is said to keep systems steady.",
+          "Infinite patience. It has been waiting to be called for a very long time."
+        ],
+        weaknesses: [
+          "Has never shown up, which makes it hard to rely on in a crisis.",
+          "Frequently quoted and rarely consulted. Its name is used far more often than its judgment.",
+          "Interpretations of its wishes vary widely, and nobody has been able to ask it directly."
+        ],
+        similarTo: "The Spirit of Constitution has a formal kinship with the Final Boss Unc, both carrying authority that others defer to, though the Unc at least answers the door.",
+        inRelationships: "The Spirit is committed in principle to everyone, which in practice means it has not yet committed to anyone in particular.",
+        atWork: "The Spirit's workplace is the document itself. It is consulted often, attended rarely and cited in almost every serious debate.",
+        growth: "For the average human, growth as the Spirit is not available. The practical lesson is to read the rules you live by and to show up for them yourself."
+      }
+    },
     {
       id: "LFPCSB", name: "Rizzler", emoji: "😏",
       description: "Can talk anyone into anything. Has never once been rejected, only temporarily unavailable.",
