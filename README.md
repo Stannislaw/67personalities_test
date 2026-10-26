@@ -67,7 +67,22 @@ To add a question:
 
 `script.js` joins these tables automatically, so you never need to edit it when adding content.
 
-Ideas for future work: more questions per axis, a share-result button, and a visual personality chart.
+## Pages
+
+The site is a single page with six views, switched by the hash in the URL (`#home`, `#test`, `#types`, `#compare`, `#history`, `#contact`).
+
+- **Home:** hero section, a "Type of the day" card (changes every day), stats, feature cards and testimonials.
+- **Take the test:** the assessment, with the result shown at the end.
+- **Types:** searchable and sortable catalogue of all personality types. Clicking one opens its profile in a dialog.
+- **Compare:** compatibility checker. Pick two types to see the percentage of shared axes and a verdict.
+- **My results:** the last 20 results, saved in the browser's local storage. Each one can be reopened or deleted.
+- **Contact:** company details, team, a contact form and FAQ.
+
+Extra features on the result screen: **Share result** (uses the Web Share API, or copies the text), and **Print certificate** (a printable certificate with a unique ID). The header has a dark mode toggle, which is remembered between visits.
+
+The contact form and history only use local storage. Nothing is sent to a server.
+
+Ideas for future work: more questions per axis and a visual personality chart.
 
 ## Disclaimer
 
