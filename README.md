@@ -22,12 +22,13 @@ Just open `index.html` in any modern browser. Double-clicking the file is enough
 
 ## How it works
 
-1. The user reads the intro and presses **Start the test**.
-2. Each question belongs to one axis and has four answers. Every answer points to one pole of that axis.
-3. Each run picks 5 random questions from each of the 6 axes (30 in total), shuffled together, so no two runs are exactly the same.
-4. Each answer adds one vote to its pole. Every axis therefore gets 5 votes, so there are no ties.
+1. The user reads the intro, chooses how many questions they want with the slider (6 to 51, default 30), and presses **Begin assessment**. The slider shows a comment that changes with its value, for example "Only basic test" or "Deep brainrot dive".
+2. The first question is always **"why are you gay"**. The remaining questions are picked at random from the pool, so no two runs are exactly the same.
+3. Each question belongs to one axis and has four answers. Every answer points to one pole of that axis.
+4. Each answer adds one vote to its pole. If an axis gets a tie (or no votes at all), the winner is picked at random.
 5. For each axis, the pole with more votes wins. The six letters together give the personality code (for example `LFPCSB`, which is Rizzler).
 6. The result shows the personality with that code, its description, the percentage on each axis (like the original test), and three runner-ups ranked by how closely they match the percentages.
+7. **Browse personality types** on the intro screen lists all 64 types. Clicking one opens its full profile.
 
 ## The axes
 

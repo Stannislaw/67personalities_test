@@ -1,5 +1,3 @@
-const QUESTIONS_PER_AXIS = 5;
-
 const AXES = DB.axes;
 
 const PERSONALITIES = Object.fromEntries(
@@ -13,13 +11,34 @@ const QUESTIONS = DB.questions.map(q => ({
     .map(a => ({ text: a.text, pole: a.pole }))
 }));
 
+const FIXED_QUESTIONS = QUESTIONS.filter(q => q.fixed);
+const RANDOM_QUESTIONS = QUESTIONS.filter(q => !q.fixed);
+
+const MIN_QUESTIONS = 6;
+const MAX_QUESTIONS = QUESTIONS.length;
+const DEFAULT_QUESTIONS = 30;
+
+const SLIDER_COMMENTS = [
+  [0, "Only basic test"],
+  [10, "Fair enough"],
+  [20, "Getting serious"],
+  [30, "Now we're cooking"],
+  [40, "Touching grass is optional now"],
+  [50, "Deep brainrot dive"],
+  [Infinity, "Brainrot singularity. Nobody is coming back."]
+];
+
 const introEl = document.getElementById("intro");
+const browseEl = document.getElementById("browse");
 const quizEl = document.getElementById("quiz");
 const resultEl = document.getElementById("result");
 const progressBar = document.getElementById("progress-bar");
 const progressText = document.getElementById("progress-text");
 const questionText = document.getElementById("question-text");
 const optionsEl = document.getElementById("options");
+const sliderEl = document.getElementById("question-slider");
+const sliderValueEl = document.getElementById("slider-value");
+const sliderCommentEl = document.getElementById("slider-comment");
 
 let selected = [];
 let current = 0;
@@ -35,16 +54,32 @@ function shuffle(array) {
 }
 
 function show(section) {
-  [introEl, quizEl, resultEl].forEach(el => el.classList.add("hidden"));
+  [introEl, browseEl, quizEl, resultEl].forEach(el => el.classList.add("hidden"));
   section.classList.remove("hidden");
 }
 
+function commentFor(count) {
+  return SLIDER_COMMENTS.find(([limit]) => count <= limit)[1];
+}
+
+function updateSlider() {
+  const count = Number(sliderEl.value);
+  sliderValueEl.textContent = count;
+  sliderCommentEl.textContent = commentFor(count);
+}
+
+function setupSlider() {
+  sliderEl.min = MIN_QUESTIONS;
+  sliderEl.max = MAX_QUESTIONS;
+  sliderEl.value = DEFAULT_QUESTIONS;
+  updateSlider();
+}
+
 function startTest() {
-  selected = shuffle(
-    AXES.flatMap(axis =>
-      shuffle(QUESTIONS.filter(q => q.axis === axis.id)).slice(0, QUESTIONS_PER_AXIS)
-    )
-  ).map(q => ({ ...q, options: shuffle(q.options) }));
+  const count = Number(sliderEl.value);
+  const randomCount = Math.max(0, count - FIXED_QUESTIONS.length);
+  const randomPick = shuffle(RANDOM_QUESTIONS).slice(0, randomCount);
+  selected = [...FIXED_QUESTIONS, ...randomPick].map(q => ({ ...q, options: shuffle(q.options) }));
   current = 0;
   votes = {};
   AXES.forEach(axis => {
@@ -53,6 +88,52 @@ function startTest() {
   });
   show(quizEl);
   renderQuestion();
+}
+
+function renderBrowse() {
+  const list = document.getElementById("browse-list");
+  list.innerHTML = "";
+  DB.personalities.forEach(p => {
+    const card = document.createElement("button");
+    card.className = "type-card";
+    card.innerHTML = `
+      <span class="type-emoji">${p.emoji}</span>
+      <span class="type-name">${p.name}</span>
+      <span class="type-code">${p.id}</span>
+      <span class="type-desc">${p.description}</span>`;
+    card.addEventListener("click", () => showPersonality(p));
+    list.appendChild(card);
+  });
+  show(browseEl);
+}
+
+let resultFromBrowse = false;
+
+function showPersonality(p) {
+  document.getElementById("result-name").textContent = p.name;
+  document.getElementById("result-emoji").textContent = p.emoji;
+  document.getElementById("result-code").textContent = p.id;
+  document.getElementById("result-desc").textContent = p.description;
+  renderProfile(p.profile);
+  document.getElementById("result-axes").innerHTML = "";
+  document.getElementById("result-runners").innerHTML = "";
+  resultFromBrowse = true;
+  setResultMode();
+  show(resultEl);
+}
+
+function setResultMode() {
+  document.querySelector("#result .result-label").textContent = resultFromBrowse
+    ? "Personality type"
+    : "Your assessed profile";
+  document.getElementById("restart-btn").textContent = resultFromBrowse
+    ? "Back to browse"
+    : "Retake assessment";
+}
+
+function resetResultLabels() {
+  resultFromBrowse = false;
+  setResultMode();
 }
 
 function renderQuestion() {
@@ -125,14 +206,17 @@ function showResult() {
 
   const axisResults = AXES.map(axis => {
     const total = votes[axis.a.code] + votes[axis.b.code];
-    const aPct = Math.round((votes[axis.a.code] / total) * 100);
+    const aPct = total === 0 ? 50 : Math.round((votes[axis.a.code] / total) * 100);
     const bPct = 100 - aPct;
-    const winner = aPct > bPct ? axis.a.code : axis.b.code;
+    const winner = aPct !== bPct
+      ? (aPct > bPct ? axis.a.code : axis.b.code)
+      : (Math.random() < 0.5 ? axis.a.code : axis.b.code);
     return { axis, aPct, bPct, winner };
   });
 
   const code = axisResults.map(r => r.winner).join("");
   const winner = PERSONALITIES[code];
+  resetResultLabels();
 
   const share = {};
   axisResults.forEach(r => {
@@ -180,4 +264,15 @@ function showResult() {
 }
 
 document.getElementById("start-btn").addEventListener("click", startTest);
-document.getElementById("restart-btn").addEventListener("click", startTest);
+document.getElementById("browse-btn").addEventListener("click", renderBrowse);
+document.getElementById("browse-back-btn").addEventListener("click", () => show(introEl));
+document.getElementById("restart-btn").addEventListener("click", () => {
+  if (resultFromBrowse) {
+    resetResultLabels();
+    renderBrowse();
+  } else {
+    show(introEl);
+  }
+});
+sliderEl.addEventListener("input", updateSlider);
+setupSlider();

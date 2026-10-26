@@ -175,6 +175,109 @@ header h1 {
   background: var(--accent);
 }
 
+.btn-secondary {
+  background: var(--paper);
+  color: var(--navy);
+  border: 1px solid var(--line);
+  margin-left: 12px;
+}
+
+.btn-secondary:hover {
+  background: var(--accent-soft);
+  color: var(--navy);
+}
+
+.slider-block {
+  margin: 28px 0 8px;
+}
+
+.slider-label {
+  display: block;
+  font-size: 1rem;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.slider-label b {
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+.slider {
+  width: 100%;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.slider-comment {
+  margin: 12px 0 0;
+  font-style: italic;
+  color: var(--gold);
+  min-height: 1.6em;
+}
+
+.browse-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.browse-head h2 {
+  font-family: "Georgia", serif;
+  color: var(--navy);
+  margin: 0;
+}
+
+.browse-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.type-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--paper);
+  cursor: pointer;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--ink);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.type-card:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.type-emoji {
+  font-size: 1.6rem;
+}
+
+.type-name {
+  font-family: "Georgia", serif;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.type-code {
+  font-family: "Consolas", monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+
+.type-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .result-label {
   font-family: "Segoe UI", Arial, sans-serif;
   font-size: 0.8rem;

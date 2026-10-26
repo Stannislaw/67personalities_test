@@ -1670,7 +1670,8 @@ const DB = {
     { id: 47, axis: "PN", emoji: "💻", text: "Your computer freezes right before an important deadline. What do you do?" },
     { id: 48, axis: "CD", emoji: "🐢", text: "A turtle slowly passes you on the street. How do you respond?" },
     { id: 49, axis: "LW", emoji: "📦", text: "A mysterious package arrives with no name on it. What do you do?" },
-    { id: 50, axis: "SM", emoji: "🦸", text: "Your superhero origin story is revealed. What is your power?" }
+    { id: 50, axis: "SM", emoji: "🦸", text: "Your superhero origin story is revealed. What is your power?" },
+    { id: 51, axis: "LW", emoji: "❓", text: "¿Why are you gay?", fixed: true }
   ],
 
   answers: [
@@ -1923,6 +1924,11 @@ const DB = {
     { questionId: 50, pole: "S", text: "Solar Flare: a glow that makes everyone around me brighter." },
     { questionId: 50, pole: "S", text: "Sunbeam Speed: I can dry any wet room in seconds." },
     { questionId: 50, pole: "M", text: "Lunar Logic: I can rewind time, but only at midnight." },
-    { questionId: 50, pole: "M", text: "Night Vision, plus the ability to hear the stars." }
+    { questionId: 50, pole: "M", text: "Night Vision, plus the ability to hear the stars." },
+    // Q51 LW (fixed opener)
+    { questionId: 51, pole: "L", text: "Because the hot dog took the first bite and I just followed the grill." },
+    { questionId: 51, pole: "L", text: "Honestly? No reason. I simply yell it at the mustard." },
+    { questionId: 51, pole: "W", text: "Because the sandwich layers were organised that way, and I respect the system." },
+    { questionId: 51, pole: "W", text: "I don't answer questions I didn't prepare for. Next question." }
   ]
 };

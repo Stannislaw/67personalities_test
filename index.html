@@ -21,8 +21,22 @@
     </header>
 
     <section id="intro" class="card">
-      <p>The assessment consists of 30 questions drawn from six validated dimensions, five per dimension. Select the response that most closely reflects your typical behaviour. There are no incorrect answers.</p>
+      <p>Choose how many questions you want to answer. The first question is always the same; the rest are picked at random from the pool. There are no incorrect answers.</p>
+      <div class="slider-block">
+        <label for="question-slider" class="slider-label">Number of questions: <b id="slider-value">30</b></label>
+        <input type="range" id="question-slider" class="slider" min="6" max="51" value="30">
+        <p id="slider-comment" class="slider-comment"></p>
+      </div>
       <button id="start-btn" class="btn">Begin assessment</button>
+      <button id="browse-btn" class="btn btn-secondary">Browse personality types</button>
+    </section>
+
+    <section id="browse" class="card hidden">
+      <div class="browse-head">
+        <h2>All personality types</h2>
+        <button id="browse-back-btn" class="btn btn-secondary">Back</button>
+      </div>
+      <div id="browse-list" class="browse-grid"></div>
     </section>
 
     <section id="quiz" class="card hidden">
