@@ -7,15 +7,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="site-header">
+    <div class="site-header-inner">
+      <span class="brand">67 Personalities <span class="brand-sub">Assessment Group</span></span>
+      <span class="brand-sub">Est. 2026</span>
+    </div>
+  </div>
+
   <div class="container">
     <header>
       <h1>67 Personalities</h1>
-      <p class="subtitle">A joking distorting mirror of the 16 Personalities test. Answer honestly. Or don't. We don't judge. (We do.)</p>
+      <p class="subtitle">A professional, research-informed personality assessment for the modern individual. Answer candidly and receive a detailed profile of your working style, relationships and growth areas.</p>
     </header>
 
     <section id="intro" class="card">
-      <p>30 random questions: 5 from each of 6 axes. Pick the answer that feels most like you. No wrong answers, only brainrot.</p>
-      <button id="start-btn" class="btn">Start the test</button>
+      <p>The assessment consists of 30 questions drawn from six validated dimensions, five per dimension. Select the response that most closely reflects your typical behaviour. There are no incorrect answers.</p>
+      <button id="start-btn" class="btn">Begin assessment</button>
     </section>
 
     <section id="quiz" class="card hidden">
@@ -26,16 +33,18 @@
     </section>
 
     <section id="result" class="card hidden">
-      <p class="result-label">Your personality is</p>
+      <p class="result-label">Your assessed profile</p>
       <h2 id="result-name"></h2>
       <p id="result-emoji" class="result-emoji"></p>
       <p id="result-code"></p>
       <p id="result-desc"></p>
+      <div id="result-profile" class="profile"></div>
       <div id="result-axes"></div>
-      <h3>Runner-ups</h3>
+      <h3>Closest alternative profiles</h3>
       <ol id="result-runners"></ol>
-      <button id="restart-btn" class="btn">Take it again</button>
+      <button id="restart-btn" class="btn">Retake assessment</button>
     </section>
+
   </div>
 
   <script src="db.js"></script>

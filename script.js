@@ -80,6 +80,46 @@ function answer(pole) {
   }
 }
 
+function renderProfile(profile) {
+  const container = document.getElementById("result-profile");
+  container.innerHTML = "";
+  if (!profile) return;
+
+  const addList = (title, items) => {
+    const h = document.createElement("h4");
+    h.textContent = title;
+    const ul = document.createElement("ul");
+    items.forEach(text => {
+      const li = document.createElement("li");
+      li.textContent = text;
+      ul.appendChild(li);
+    });
+    container.append(h, ul);
+  };
+
+  const addText = (title, text) => {
+    const h = document.createElement("h4");
+    h.textContent = title;
+    const p = document.createElement("p");
+    p.textContent = text;
+    container.append(h, p);
+  };
+
+  profile.overview.forEach(text => {
+    const p = document.createElement("p");
+    p.className = "profile-text";
+    p.textContent = text;
+    container.appendChild(p);
+  });
+
+  addList("Strengths", profile.strengths);
+  addList("Weaknesses", profile.weaknesses);
+  addText("Similar to", profile.similarTo);
+  addText("In relationships", profile.inRelationships);
+  addText("At work", profile.atWork);
+  addText("Growth", profile.growth);
+}
+
 function showResult() {
   progressBar.style.width = "100%";
 
@@ -112,6 +152,7 @@ function showResult() {
   document.getElementById("result-emoji").textContent = winner.emoji;
   document.getElementById("result-code").textContent = code;
   document.getElementById("result-desc").textContent = winner.description;
+  renderProfile(winner.profile);
 
   const axesEl = document.getElementById("result-axes");
   axesEl.innerHTML = "";
