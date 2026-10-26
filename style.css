@@ -790,6 +790,18 @@ textarea:focus {
   margin-top: 20px;
 }
 
+.welcome-body {
+  padding: 28px 32px 32px;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.welcome-body .lead-text {
+  font-size: 1.05rem;
+  font-style: normal;
+  color: var(--ink);
+  margin: 0 0 24px;
+}
+
 .lead-text {
   font-style: italic;
   color: var(--muted);

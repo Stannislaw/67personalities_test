@@ -251,11 +251,11 @@ function typeCard(p) {
 function renderTypes() {
   const query = $("type-search").value.trim().toLowerCase();
   const sort = $("type-sort").value;
-  const list = DB.personalities
+  const list = TYPES
     .filter(p => !query || [p.name, p.id, p.description].join(" ").toLowerCase().includes(query))
     .sort((a, b) => sort === "code" ? a.id.localeCompare(b.id) : a.name.localeCompare(b.name));
 
-  $("types-count").textContent = `${list.length} of ${DB.personalities.length} types`;
+  $("types-count").textContent = `${list.length} of ${TYPES.length} types`;
   const grid = $("browse-list");
   grid.innerHTML = "";
   if (!list.length) {
@@ -393,7 +393,7 @@ function showResult() {
     share[r.axis.b.code] = r.bPct;
   });
 
-  const ranked = DB.personalities
+  const ranked = TYPES
     .map((p, index) => ({
       p,
       index,
@@ -449,7 +449,7 @@ function renderDaily() {
 }
 
 function setupStats() {
-  $("stat-types").textContent = DB.personalities.length;
+  $("stat-types").textContent = TYPES.length;
   $("stat-questions").textContent = QUESTIONS.length;
 }
 
@@ -527,6 +527,9 @@ $("contact-form").addEventListener("submit", e => {
 
 window.addEventListener("hashchange", route);
 
+$("welcome-close").addEventListener("click", () => $("welcome-dialog").close());
+$("welcome-ok").addEventListener("click", () => $("welcome-dialog").close());
+
 applyTheme(load(STORAGE_KEYS.theme, false));
 setupStats();
 setupSlider();
@@ -534,6 +537,7 @@ renderDaily();
 setupCompare();
 updateSlider();
 route();
+$("welcome-dialog").showModal();
 
 function setupSlider() {
   $("question-slider").min = MIN_QUESTIONS;
